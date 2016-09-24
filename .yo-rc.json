@@ -1,0 +1,10 @@
+{
+  "generator-reveal": {
+    "presentationTitle": "ScalaJS in practice",
+    "packageVersion": "0.0.0",
+    "useSass": true,
+    "deployToGithubPages": true,
+    "githubUsername": "nicojs",
+    "githubRepository": "scalajs-slides"
+  }
+}
