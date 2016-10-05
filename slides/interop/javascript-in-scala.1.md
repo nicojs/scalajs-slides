@@ -20,6 +20,6 @@ object MyApp{
   val jQuery: JQueryStatic = js.Dynamic.global.
     jQuery.asInstanceOf[JQueryStatic]
 
-  jQuery(".h1").text("hello world")
+  jQuery(".h1").html("hello world")
 }
 ```
