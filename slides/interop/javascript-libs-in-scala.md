@@ -8,4 +8,4 @@
 * Vue
 * D3
 
-https://www.scala-js.org/libraries/facades.html
+https://www.scala-js.org/libraries/facades.html <!-- .element target="_blank" -->

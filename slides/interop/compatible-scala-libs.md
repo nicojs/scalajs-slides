@@ -5,4 +5,4 @@
 * Akka.js
 * Scala.Rx
 
-https://www.scala-js.org/libraries/libs.html
+https://www.scala-js.org/libraries/libs.html <!-- .element target="_blank" -->
