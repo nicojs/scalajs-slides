@@ -32,7 +32,7 @@ module.exports = (grunt) ->
             jshint:
                 files: ['js/*.js']
                 tasks: ['jshint']
-        
+
             sass:
                 files: ['css/source/theme.scss']
                 tasks: ['sass']
@@ -42,12 +42,12 @@ module.exports = (grunt) ->
             theme:
                 files:
                     'css/theme.css': 'css/source/theme.scss'
-        
+
         connect:
 
             livereload:
                 options:
-                    port: 9000
+                    port: 9001
                     # Change hostname to '0.0.0.0' to access
                     # the server from outside.
                     hostname: 'localhost'
@@ -92,7 +92,7 @@ module.exports = (grunt) ->
                     filter: 'isFile'
                 }]
 
-        
+
         buildcontrol:
 
             options:
@@ -104,7 +104,7 @@ module.exports = (grunt) ->
                 options:
                     remote: '<%= pkg.repository.url %>'
                     branch: 'gh-pages'
-        
+
 
 
     # Load all grunt tasks.
@@ -148,13 +148,13 @@ module.exports = (grunt) ->
             'copy'
         ]
 
-    
+
     grunt.registerTask 'deploy',
         'Deploy to Github Pages', [
             'dist'
             'buildcontrol'
         ]
-    
+
 
     # Define default task.
     grunt.registerTask 'default', [

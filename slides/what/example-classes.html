@@ -1,0 +1,46 @@
+<div class="flex">
+    <div class="col">
+        <h4>Scala.js</h4>
+        <pre>
+            <code class="hljs lang-scala">
+class Hero
+    (name: String, ability: String){
+
+  def describe()
+    = name + " has " + ability
+}
+
+val wolverine = new Hero
+    ("Wolverine",
+    "accelerated healing")
+wolverine.describe()
+            </code>
+        </pre>
+    </div>
+    <div class="col">
+        <h4>ES 5.1</h4>
+        <div style="font-size: .8em;">
+            <pre>
+                <code class="hljs lang-js">function $Hero() {
+  this.name$1 = null;
+  this.ability$1 = null
+}
+$Hero.prototype.init =
+    (function(name, ability) {
+  this.name$1 = name;
+  this.ability$1 = ability;
+  return this
+});
+$Hero.prototype.describe__T =
+    (function() {
+  return this.name$1 + " has " +
+    this.ability$1
+});
+var wolverine = new $Hero()
+.init("Wolverine", "accelerated healing");
+wolverine.describe__V();
+            </code>
+            </pre>
+        </div>
+    </div>
+</div>

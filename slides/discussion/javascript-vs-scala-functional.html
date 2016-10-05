@@ -1,0 +1,140 @@
+<h2>Power of functional programming</h2>
+
+<div class="flex"><pre class="col"><code class="really-small hljs lang-js javascript">function MockHttpScenarioExpectation(name, method, url, data, headers) {
+
+    var _this = this;
+    this.data = data;
+    this.headers = headers;
+    this.name = name;
+
+    this.match = function (searchParams, m, u, d, h) {
+    if (method !== m) {
+        return false;
+    }
+    if (!this.matchName(searchParams)) {
+        return false;
+    }
+    if (!this.matchUrl(u)) {
+        return false;
+    }
+    if (angular.isDefined(d) && !this.matchData(d)) {
+        return false;
+    }
+    if (angular.isDefined(h) && !this.matchHeaders(h)) {
+        return false;
+    }
+    return true;
+    };
+
+    this.matchUrl = function (u) {
+    if (!url) {
+        return true;
+    }
+    if (angular.isFunction(url.test)) {
+        return url.test(u);
+    }
+    return url === u;
+    };
+
+    this.matchHeaders = function (h) {
+    if (angular.isUndefined(headers)) {
+        return true;
+    }
+    if (angular.isFunction(headers)) {
+        return headers(h);
+    }
+    return angular.equals(headers, h);
+    };
+
+    this.matchData = function (d) {
+    if (angular.isUndefined(data)) {
+        return true;
+    }
+    if (data && angular.isFunction(data.test)) {
+        return data.test(d);
+    }
+    if (data && angular.isFunction(data)) {
+        return data(d);
+    }
+    if (data && !angular.isString(data)) {
+        return angular.equals(data, angular.fromJson(d));
+    }
+    /*jshint -W116*/
+    return data == d;
+    };
+
+    this.matchName = function (searchParams) {
+    return angular.isDefined(_this.getScenarioValue(searchParams));
+    };
+
+    this.getScenarioValue = function (searchParams) {
+    var scenarioName = _this.getScenarioName(searchParams);
+    if (angular.isObject(this.name)) {
+        if (searchParams[scenarioName] === this.name[scenarioName]) {
+        return searchParams[scenarioName];
+        }
+    } else {
+        return searchParams[scenarioName];
+    }
+    };
+
+    this.getScenarioName = function (searchParams) {
+    if (angular.isObject(this.name)) {
+        for (var key in this.name) {
+        if (angular.isDefined(searchParams[key])) {
+            return key;
+        }
+        }
+    } else {
+        return this.name;
+    }
+    };
+}
+</code>
+</pre>
+<pre class="col"><code class="hljs lang-scala scala really-small">class MockHttpScenarioExpectation(name: Map[String, String],
+    method: String, url: Option[String], expectedData: Option[String],
+    expectedHeaders: Map[String, String]) {
+
+  def matches(searchParams: Map[String, String], method: String,
+              url: String,
+              data: Option[String],
+              headers: Map[String, String]) =
+    matchName(searchParams) &&
+      matchUrl(url) &&
+      matchData(data) &&
+      matchHeaders(headers, expectedHeaders.keys)
+
+  def getScenarioValue(searchParams: Map[String, String]): Option[String] = {
+    getScenarioName(searchParams) match {
+      case Some(theName) if searchParams.get(theName) == name.get(theName) =>
+        searchParams.get(theName)
+      case _ => None
+    }
+  }
+
+  def getScenarioName(searchParams: Map[String, String]): Option[String] =
+    name.keys.find(searchParams.contains)
+
+  def matchName(searchParams: Map[String, String]) = getScenarioValue(searchParams).isDefined
+
+  def matchUrl(u: String) = url match {
+    case Some(string) => u == string
+    case None => true
+  }
+
+  def matchData(actualData: Option[String]) = (expectedData, actualData) match {
+    case (Some(expected), Some(actual)) =>
+      expected == actual
+    case (None, _) => true
+    case _ => false
+  }
+
+  def matchHeaders(actualHeaders: Map[String, String], expectedHeaderKeys: Iterable[String]): Boolean =
+    expectedHeaderKeys match {
+      case x :: xs => expectedHeaders(x) == actualHeaders(x) && matchHeaders(actualHeaders, xs)
+      case Nil => true
+    }
+
+}</code></pre>
+</div>

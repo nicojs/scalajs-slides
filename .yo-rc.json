@@ -1,6 +1,6 @@
 {
   "generator-reveal": {
-    "presentationTitle": "ScalaJS in practice",
+    "presentationTitle": "Scala.js in practice",
     "packageVersion": "0.0.0",
     "useSass": true,
     "deployToGithubPages": true,
