@@ -1,3 +1,0 @@
-# Wrap up
-
-* Scala.js

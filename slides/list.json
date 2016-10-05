@@ -5,6 +5,8 @@
     ["interop/index.md", "interop/scala-in-javascript.md", "interop/javascript-in-scala.md", "interop/javascript-in-scala.1.md", "interop/javascript-libs-in-scala.md", "interop/compatible-scala-libs.md"],
     "demo/interop.md",
     ["language-differences/index.md", "language-differences/base-library.md", "language-differences/base-library.1.md", "language-differences/no-threading.md", "language-differences/undefined-behavior.md", "language-differences/reflection.md"],
-    ["discussion/index.md", "discussion/when-use-it.md", "discussion/javascript-vs-scala-functional.html", "discussion/when-not-to-use-it.md", "discussion/new-comparison.html", "discussion/resources.md"],
+    ["discussion/index.md", "discussion/when-use-it.md", "discussion/javascript-vs-scala-functional.html", "discussion/when-not-to-use-it.md", "discussion/new-comparison.html"],
+    ["recap/wrap-up.md", "recap/resources.md"],
+    "questions.md",
     "thank-you.md"
 ]
